@@ -1,18 +1,20 @@
 <template>
-  <div v-if="results.length > 0">
+  <div class="embed-responsive embed-responsive-16by9" v-if="selectedVideo">
     <iframe
-      v-bind:src="'https://www.youtube.com/embed/' + results[0].id.videoId"
-      width="560"
-      height="315"
-      frameborder="0"
+      class="embed-responsive-item"
+      :src="`https://www.youtube.com/embed/${selectedVideo.id.videoId}`"
     ></iframe>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "VideoPlayer",
-  props: { results: Array },
+  computed: {
+    ...mapGetters(["selectedVideo"]),
+  },
 };
 </script>
 
